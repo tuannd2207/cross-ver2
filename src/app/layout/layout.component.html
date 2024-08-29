@@ -1,0 +1,14 @@
+<div class="layout-wrapper" [ngClass]="containerClass">
+  <ase-topbar></ase-topbar>
+  <div class="layout-sidebar">
+    <ase-sidebar></ase-sidebar>
+  </div>
+  <div class="layout-main-container">
+    <div class="layout-main">
+      <div class="card" style="height: calc(100vh - 96px)">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  <div class="layout-mask"></div>
+</div>

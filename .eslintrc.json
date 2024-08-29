@@ -1,0 +1,47 @@
+{
+  "root": true,
+  "ignorePatterns": ["src/app/layout/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:@angular-eslint/recommended",
+        "prettier"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "ase",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "ase",
+            "style": "kebab-case"
+          }
+        ],
+        "no-underscore-dangle": ["error"],
+        "@typescript-eslint/no-explicit-any": ["error"]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility"
+      ],
+      "rules": {
+        "@angular-eslint/template/elements-content": "off",
+        "@angular-eslint/template/label-has-associated-control": "off"
+      }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "COMMON": {
+    "EDIT": "Sửa",
+    "APPROVE": "Duyệt",
+    "ACTIVE": "Hoạt động",
+    "INACTIVE": "Không hoạt động",
+    "PENDING": "Chờ duyệt",
+    "STATUS": "Trạng thái",
+    "DESCRIPTION": "Diễn giải",
+    "VALUE": "Giá trị",
+    "VIEW": "Xem",
+    "INTERNAL": "Nội bộ",
+    "EXTERNAL": "Đối tác",
+    "DELETE": "Xóa",
+    "CONFIRM": "Xác nhận",
+    "CANCEL": "Hủy"
+  },
+  "SHARE": {
+    "COMPONENTS": {
+      "ASE_SIDEBAR": {
+        "CLOSE": "Đóng",
+        "ADD": "Thêm",
+        "CONFIRM": "Xác nhận",
+        "EDIT": "Bạn có chắc muốn cập nhật bản ghi",
+        "DELETE": "Bạn có chắc muốn xóa bản ghi",
+        "APPROVE": "Bạn có chắc muốn duyệt bản ghi",
+        "REJECT": "Bạn có chắc muốn từ chối bản ghi",
+        "YES": "Đồng ý"
+      }
+    }
+  },
+  "FEATURES": {
+    "USERS_MANAGEMENT": {
+        "TITLE": "Quản lý người dùng",
+        "USER_CODE": "Mã quản lý",
+        "USER_LOGIN": "Tên đăng nhập",
+        "FULL_NAME": "Họ và tên",
+        "USERTYPE": "Loại người dùng",
+        "POSITION": "Chức vụ",
+        "DEPARTMENT": "Phòng ban",
+        "BRANCH": "Chi nhánh",
+        "AREA": "Khu vực",
+        "DIVISION": "Khối",
+        "MANAGER_CODE": "Quản lý trực tiếp",
+        "MANAGER_NAME": "Tên người quản lý",
+        "STATUS": "Trạng thái",
+        "ADD_NEW": "Thêm mới",
+        "IMPORT_NEW": "Nhập dữ liệu",
+        "SUBMIT": "Thêm"
+    },
+    "SYSTEM_PARAMETERS": {
+      "TITLE": "Tham số hệ thống",
+      "PARAMETER_NAME": "Tên tham số"
+    }
+  }
+}

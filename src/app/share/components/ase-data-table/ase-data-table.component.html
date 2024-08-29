@@ -1,0 +1,128 @@
+<p-table
+  #dt
+  [columns]="cols"
+  [scrollable]="true"
+  currentPageReportTemplate="Số hàng mỗi trang"
+  [value]="data"
+  [(selection)]="selectedItems"
+  (selectionChange)="selectedItem.emit(selectedItems)"
+  [showCurrentPageReport]="true"
+  [globalFilterFields]="globalFilterFields"
+  selectionMode="multiple"
+  responsiveLayout="scroll"
+  [rowHover]="true"
+  dataKey="id">
+  <ng-container *ngIf="showSearch">
+    <ng-template pTemplate="caption">
+      <div
+        class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+        <h5 class="m-0">Manage Products</h5>
+        <span class="block mt-2 md:mt-0 p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="onGlobalFilter(dt, $event)"
+            placeholder="Search..."
+            class="w-full sm:w-auto" />
+        </span>
+      </div>
+    </ng-template>
+  </ng-container>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <ng-container *ngIf="showCheckedRow">
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+      </ng-container>
+      <ng-container *ngFor="let col of columns">
+        <ng-container *ngIf="sortAble; else noSort">
+          <th
+            pFrozenColumn
+            [frozen]="frozenColumn === col.header"
+            [pSortableColumnDisabled]="col.disabledSort"
+            [pSortableColumn]="col.field">
+            {{ col.header | translate }}
+            <p-sortIcon
+              [class.hidden]="col.disabledSort"
+              [field]="col.field"></p-sortIcon>
+          </th>
+        </ng-container>
+        <ng-template #noSort>
+          <th pFrozenColumn [frozen]="frozenColumn === col.header">
+            {{ col.header | translate }}
+          </th>
+        </ng-template>
+      </ng-container>
+      <th
+        alignFrozen="right"
+        pFrozenColumn
+        [frozen]="true"
+        style="width: 64px"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr>
+      <ng-container *ngIf="showCheckedRow">
+        <td>
+          <p-tableCheckbox
+            (change)="selectedItem.emit(selectedItems)"
+            [value]="rowData"></p-tableCheckbox>
+        </td>
+      </ng-container>
+      <ng-container *ngFor="let col of columns">
+        <td [style]="{ width: col.width }">
+          <ng-container *ngIf="col.background; else colTable">
+            <ase-background-tag
+              [value]="rowData[col.field]"></ase-background-tag>
+          </ng-container>
+          <ng-template #colTable>
+            {{ rowData[col.field] }}
+          </ng-template>
+        </td>
+      </ng-container>
+      <td alignFrozen="right" pFrozenColumn>
+        <p-menu
+          styleClass="table-dropdown"
+          #menu
+          appendTo="body"
+          [popup]="true"
+          [model]="actionEvents">
+          <ng-template pTemplate="item" let-item>
+            <div
+              *ngIf="item.showIn.includes(rowData[item.keyMapAction])"
+              class="p-menuitem-link"
+              (click)="
+                sendActionEvents.emit({ event: item.action, record: rowData })
+              ">
+              <button class="btn-icon">
+                <ase-icon [iconName]="item.icon" />
+                <span class="ase-ml8 ase-mt2">
+                  {{ item.label | translate }}
+                </span>
+              </button>
+            </div>
+          </ng-template>
+        </p-menu>
+        <p-button
+          class="btn-action"
+          [rounded]="true"
+          [text]="true"
+          (onClick)="menu.toggle($event)"
+          icon="pi pi-ellipsis-v" />
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<ng-container *ngIf="paginator">
+  <p-paginator
+    (onPageChange)="pageChange.emit($event)"
+    currentPageReportTemplate="Số hàng mỗi trang"
+    [rows]="rows"
+    [first]="first"
+    [totalRecords]="totalRecords"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [showFirstLastIcon]="false" />
+</ng-container>

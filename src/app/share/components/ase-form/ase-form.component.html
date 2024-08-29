@@ -1,0 +1,74 @@
+<ng-container [formGroup]="formGroup">
+  <label
+    [class.ase-mb4]="actionEvent !== ActionEvents.VIEW"
+    [class.w-full]="actionEvent !== ActionEvents.VIEW"
+    class="p-label w-full"
+    [for]="controlName">
+    {{ label }}
+  </label>
+  <ng-container *ngIf="actionEvent === ActionEvents.VIEW; else modify">
+    <ng-template #otherControl>
+      <div>
+        {{ formGroup.get(controlName)?.value }}
+      </div>
+    </ng-template>
+    <ase-background-tag
+      *ngIf="['status', 'userType'].includes(controlName); else otherControl"
+      [value]="formGroup.controls[controlName].value"></ase-background-tag>
+  </ng-container>
+  <ng-template #modify>
+    <ng-container [ngSwitch]="controlTypes">
+      <input
+        *ngIf="!options; else dropdown"
+        class="w-full"
+        [maxlength]="maxLength"
+        [formControlName]="controlName"
+        pInputText
+        [id]="controlName" />
+      <ng-template #dropdown>
+        <p-dropdown
+          styleClass="w-full"
+          *ngSwitchCase="TypeControlsEnum.DROP_DOWN"
+          appendTo="body"
+          [formControlName]="controlName"
+          [id]="controlName"
+          [inputId]="controlName"
+          [options]="options"
+          placeholder="Select">
+          <ng-template pTemplate="selectedItem">
+            <div aseTypography fontSize="body3" fontWeight="medium">
+              {{
+                TRANSLATION_PATH.COMMON + formGroup.controls[controlName].value
+                  | translate
+              }}
+            </div>
+          </ng-template>
+          <ng-template let-option pTemplate="item">
+            <div aseTypography fontSize="body3" fontWeight="medium">
+              {{ TRANSLATION_PATH.COMMON + option | translate }}
+            </div>
+          </ng-template>
+        </p-dropdown>
+        <div
+          *ngSwitchCase="TypeControlsEnum.RADIO_BUTTON"
+          class="flex align-items-center ase-mt8">
+          <div
+            *ngFor="let option of options"
+            class="field-checkbox ase-ml24 ase-mb0">
+            <p-radioButton
+              styleClass="ase-mr12"
+              [inputId]="String(option)"
+              [name]="controlName"
+              [formControlName]="controlName" />
+            <label [for]="option" class="ml-2">
+              {{ TRANSLATION_PATH.COMMON + option | translate }}
+            </label>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+    <ase-input-errors
+      [label]="label"
+      [control]="formGroup.controls[controlName]" />
+  </ng-template>
+</ng-container>

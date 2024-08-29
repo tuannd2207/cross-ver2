@@ -1,0 +1,70 @@
+/// Border of an overlay container element such as dialog or overlaypanel
+/// @group overlay
+$overlayContentBorder: 0 none;
+$dialogContentBorder: 1px solid var(--surface-200);
+
+/// Background of an overlay container element such as dialog or overlaypanel
+/// @group overlay
+$overlayContentBg: $panelContentBg;
+
+$dialogHeaderMargin: 0;
+
+/// Background of an sidebar container e
+/// @group sidebar
+$sidebarContentBg: var(--surface-a);
+
+/// Box shadow of an overlay container element such as dialog or overlaypanel
+/// @group overlay
+$overlayContainerShadow: 0 0 14px 0 rgba(0, 0, 0, 0.1);
+
+/// Background of a dialog header
+/// @group overlay
+$dialogHeaderBg: var(--surface-50);
+
+/// Background of a dialog content
+/// @group overlay
+$dialogContentBg: var(--surface-50);
+
+/// Border of a dialog header
+/// @group overlay
+$dialogHeaderBorder: 0 none;
+
+/// Text color of a dialog header
+/// @group overlay
+$dialogHeaderTextColor: $panelHeaderTextColor;
+
+/// Font weight of a dialog header
+/// @group overlay
+$dialogHeaderFontWeight: 600;
+
+/// Font size of a dialog header
+/// @group overlay
+$dialogHeaderFontSize: 1.25rem;
+
+/// Padding of a dialog header
+/// @group overlay
+$dialogHeaderPadding: 1rem;
+
+/// Padding of a dialog content
+/// @group overlay
+$dialogContentPadding: 0 $dialogHeaderPadding;
+
+/// Border of a dialog footer
+/// @group overlay
+$dialogFooterBorder: 0 none;
+
+/// Padding of a dialog footer
+/// @group overlay
+$dialogFooterPadding: $dialogHeaderPadding;
+
+/// Background of a tooltip
+/// @group overlay
+$tooltipBg: $textColor;
+
+/// Text color of a tooltip
+/// @group overlay
+$tooltipTextColor: #ffffff;
+
+/// Padding of a tooltip
+/// @group overlay
+$tooltipPadding: $inputPadding;

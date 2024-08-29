@@ -1,0 +1,76 @@
+<div class="layout-topbar">
+  <a aseTypography textColor="default" routerLink="">
+    <ase-icon iconName="logo"></ase-icon>
+  </a>
+
+  <button
+    #menubutton
+    class="p-link layout-menu-button layout-topbar-button"
+    (click)="layoutService.onMenuToggle()">
+    <i class="pi pi-bars"></i>
+  </button>
+  <div
+    #topbarmenu
+    class="layout-topbar-menu"
+    [ngClass]="{
+      'layout-topbar-menu-mobile-active':
+        layoutService.state.profileSidebarVisible,
+    }">
+    <button class="p-link layout-topbar-button" (click)="toggleTheme()">
+      <i *ngIf="valSwitch; else sun" class="pi pi-moon"></i>
+      <ng-template #sun>
+        <i class="pi pi-sun"></i>
+      </ng-template>
+    </button>
+    <p-menu appendTo="body" #menu [popup]="true" [model]="items">
+      <ng-template pTemplate="item" let-item>
+        <a
+          [routerLink]="item.routerLink"
+          (click)="logOut()"
+          class="p-menuitem-link">
+          <span [class]="item.icon"></span>
+          <span class="ml-2">{{ item.label }}</span>
+        </a>
+      </ng-template>
+    </p-menu>
+    <button (click)="switchLanguage()" class="p-link ml-3">
+      <ase-icon [iconName]="toggleLang ? 'vietnam' : 'usa'"></ase-icon>
+    </button>
+
+    <div class="ml-3 flex align-items-center gap-2">
+      <ng-container *ngIf="!errorImg(); else errorImgTemp">
+        <p-avatar
+          image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+          (click)="menu.toggle($event)"
+          (onImageError)="checkIfLoadImgError($event)"
+          [style]="{ width: '40px', height: '40px' }"
+          shape="circle"></p-avatar>
+      </ng-container>
+      <ng-template #errorImgTemp>
+        <p-avatar
+          (onImageError)="checkIfLoadImgError($event)"
+          icon="pi pi-user"
+          (click)="menu.toggle($event)"
+          size="normal"
+          shape="circle"></p-avatar>
+      </ng-template>
+
+      <div>
+        <div
+          aseTypography
+          [lineHeight]="18"
+          fontWeight="regular"
+          fontSize="body4">
+          Nguyễn Duy Tuấn
+        </div>
+        <div
+          aseTypography
+          fontSize="body4"
+          [lineHeight]="18"
+          textColor="tertiary">
+          032C124525
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

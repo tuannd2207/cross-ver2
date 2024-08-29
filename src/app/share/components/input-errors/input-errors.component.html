@@ -1,0 +1,12 @@
+<ng-container *ngIf="$controlState | async as state">
+  <ng-container *ngIf="_control?.dirty">
+    <div
+      aseTypography
+      textColor="danger"
+      fontSize="body4"
+      class="error-message ml-2 mt-1"
+      *ngFor="let errorKey of _control?.errors | keyvalue">
+      {{ errorKey.key | errorMapper: errorKey.value : label }}
+    </div>
+  </ng-container>
+</ng-container>

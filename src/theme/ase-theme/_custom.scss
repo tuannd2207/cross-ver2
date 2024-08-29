@@ -1,0 +1,76 @@
+.table-dropdown {
+  &.p-menu {
+    min-width: 140px;
+    width: unset;
+    overflow: hidden;
+    padding: 0;
+  }
+}
+
+.btn-icon {
+  outline: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.p-element {
+  &.secondary {
+    .p-tag {
+      background-color: $tagSecondaryBg;
+      color: $tagSecondaryTextColor;
+    }
+  }
+
+  &.help {
+    .p-tag {
+      background-color: $tagHelpBg;
+      color: $tagHelpTextColor;
+    }
+  }
+
+  &.info {
+    .p-tag {
+      background-color: $tagInfoBg;
+      color: $tagInfoTextColor;
+    }
+  }
+}
+
+.p-paginator .p-paginator-current {
+  &:first-child {
+    border: unset;
+    order: -2;
+    font-size: $ase-body3;
+  }
+}
+
+.btn-action {
+  .p-ripple {
+    &.p-element {
+      &.p-button {
+        padding: 0;
+        height: unset;
+      }
+    }
+  }
+}
+
+.p-paginator {
+  justify-content: flex-end;
+  padding: 0;
+  margin-top: 16px;
+
+  p-dropdown.p-inputwrapper {
+    order: -1;
+    margin-right: auto;
+  }
+}
+
+label.p-label {
+  display: inline-block;
+}

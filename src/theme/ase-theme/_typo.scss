@@ -1,0 +1,67 @@
+@mixin text-color($class, $color) {
+  .#{$class} {
+    color: $color !important;
+  }
+}
+
+@include text-color('default-text', var(--text-primary));
+@include text-color('primary-text', var(--primary-color));
+@include text-color('secondary-text', var(--text-color-secondary));
+@include text-color('tertiary-text', var(--text-tertiary));
+@include text-color('warning-text', var(--text-warning));
+@include text-color('info-text', var(--sky-500));
+@include text-color('danger-text', var(--danger-color));
+@include text-color('help-text', var(--help-color));
+@include text-color('success-text', var(--text-success));
+
+@mixin bg-color($class, $color) {
+  .#{$class} {
+    background-color: $color !important;
+  }
+}
+
+@include bg-color('default-bg', var(--surface-0));
+@include bg-color('primary-bg', var(--primary-color));
+@include bg-color('secondary-bg', var(--secondary-color));
+@include bg-color('warning-bg', var(--background-orange));
+@include bg-color('info-bg', var(--background-sky));
+@include bg-color('danger-bg', var(--danger-color));
+@include bg-color('help-bg', var(--help-color));
+@include bg-color('success-bg', var(--background-green));
+
+@mixin font-size($class, $size) {
+  .#{$class} {
+    font-size: $size !important;
+  }
+}
+
+@include font-size('body1', $ase-body1);
+@include font-size('body2', $ase-body2);
+@include font-size('body3', $ase-body3);
+@include font-size('body4', $ase-body4);
+@include font-size('title1', $ase-title1);
+@include font-size('title2', $ase-title2);
+@include font-size('heading-h1', $ase-heading-h1);
+@include font-size('heading-h2', $ase-heading-h2);
+@include font-size('heading-h3', $ase-heading-h3);
+@include font-size('heading-h4', $ase-heading-h4);
+@include font-size('heading-h5', $ase-heading-h5);
+
+@mixin font-weight($class, $weight) {
+  .#{$class} {
+    font-weight: $weight !important;
+  }
+}
+
+@include font-weight('font-weight-regular', $fontWeightRegular);
+@include font-weight('font-weight-medium', $fontWeightMedium);
+@include font-weight('font-weight-semibold', $fontWeightSemibold);
+@include font-weight('font-weight-bold', $fontWeightBold);
+
+.uppercase {
+  text-transform: uppercase !important;
+}
+
+.capitalize {
+  text-transform: capitalize !important;
+}

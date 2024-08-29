@@ -1,0 +1,49 @@
+{
+  "COMMON": {
+    "EDIT": "Sửa",
+    "APPROVE": "Duyệt",
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "PENDING": "Pending",
+    "STATUS": "Status",
+    "DESCRIPTION": "Description",
+    "VALUE": "Value",
+    "VIEW": "View",
+    "DELETE": "Delete",
+    "INTERNAL": "Internal",
+    "EXTERNAL": "External"
+  },
+  "SHARE": {
+    "COMPONENTS": {
+      "ASE_DIALOG": {
+        "CLOSE": "Close",
+        "YES": "Yes",
+        "ADD": "Insert"
+      }
+    }
+  },
+  "FEATURES": {
+    "USERS_MANAGEMENT": {
+      "TITLE": "Users management",
+      "USER_CODE": "Mã quản lý",
+      "USER_LOGIN": "Tên đăng nhập",
+      "FULL_NAME": "Họ và tên",
+      "USERTYPE": "Loại người dùng",
+      "POSITION": "Chức vụ",
+      "DEPARTMENT": "Phòng ban",
+      "BRANCH": "Chi nhánh",
+      "AREA": "Khu vực",
+      "DIVISION": "Khối",
+      "MANAGER_CODE": "Mã quản lý",
+      "MANAGER_NAME": "Tên người quản lý",
+      "STATUS": "Trạng thái",
+      "ADD_NEW": "Insert new user",
+      "IMPORT_NEW": "Import data",
+      "SUBMIT": "Insert"
+    },
+    "SYSTEM_PARAMETERS": {
+      "TITLE": "System parameters",
+      "PARAMETER_NAME": "Parameter name"
+    }
+  }
+}

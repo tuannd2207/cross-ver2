@@ -1,0 +1,153 @@
+<div class="flex justify-content-between align-items-center ase-mb16 ase-p8">
+  <div aseTypography fontWeight="semibold" fontSize="title1">
+    {{ TRANSLATION_PATH + 'TITLE' | translate }}
+  </div>
+  <div>
+    <button
+      (click)="inputFile.click(); inputFile.value = ''"
+      class="p-button-outlined ase-mr16"
+      pButton>
+      {{ TRANSLATION_PATH + 'IMPORT_NEW' | translate }}
+      <ase-icon class="ase-ml4" iconName="import" />
+    </button>
+    <input
+      type="file"
+      class="hidden"
+      accept="*/xlsx"
+      (input)="importFile($event)"
+      #inputFile />
+    <button (click)="addNewUser()" pButton>
+      {{ TRANSLATION_PATH + 'ADD_NEW' | translate }}
+      <ase-icon class="ase-ml4" iconName="insert" />
+    </button>
+  </div>
+</div>
+<ng-container *ngIf="{data: user$ | async } as users">
+  <ase-data-table
+    #data
+    [data]="users.data || []"
+    [rows]="pagination.pageSize"
+    [totalRecords]="totalUser"
+    (pageChange)="onPageChange($event)"
+    [frozenColumn]="'Status'"
+    [globalFilterFields]="[]"
+    [cols]="cols"
+    [actionEvents]="actions"
+    [paginator]="true"
+    (sendActionEvents)="onSubmitAction($event)">
+  </ase-data-table>
+
+</ng-container>
+
+
+<ase-sidebar
+  [visible]="isOpenUserDialog"
+  [dialogType]="actionEvent"
+  (doCancel)="isOpenUserDialog = false"
+  (submitForm)="saveUser()"
+  [dialogWidth]="actionEvent === ActionEvents.VIEW ? '538px' : '734px'"
+  [headerTitle]="TRANSLATION_PATH + 'TITLE' | translate">
+  <form class="grid" [formGroup]="usersForm">
+    <ase-form
+      class="col-12"
+      [formGroup]="usersForm"
+      [triggerChange]="triggerChangeForm"
+      [actionEvent]="actionEvent"
+      [label]="TRANSLATION_PATH + 'USER_CODE' | translate"
+      controlName="managerCode"></ase-form>
+
+    <ase-form
+      class="col-12"
+      [formGroup]="usersForm"
+      [triggerChange]="triggerChangeForm"
+      [actionEvent]="actionEvent"
+      [label]="TRANSLATION_PATH + 'USER_LOGIN' | translate"
+      controlName="userLogin"></ase-form>
+
+    <ase-form
+      class="col-12"
+      [triggerChange]="triggerChangeForm"
+      [formGroup]="usersForm"
+      [actionEvent]="actionEvent"
+      [label]="TRANSLATION_PATH + 'FULL_NAME' | translate"
+      controlName="fullName"></ase-form>
+
+    <ase-form
+      class="col-12"
+      [formGroup]="usersForm"
+      [controlTypes]="TypeControlsEnum.RADIO_BUTTON"
+      [triggerChange]="triggerChangeForm"
+      [options]="TYPES_USER"
+      [actionEvent]="actionEvent"
+      [label]="TRANSLATION_PATH + 'USERTYPE' | translate"
+      controlName="userType"></ase-form>
+
+    <ase-form
+      class="col-12"
+      [triggerChange]="triggerChangeForm"
+      [formGroup]="usersForm"
+      [actionEvent]="actionEvent"
+      [label]="TRANSLATION_PATH + 'POSITION' | translate"
+      controlName="position"></ase-form>
+
+    <ase-form
+      class="col-12"
+      [formGroup]="usersForm"
+      [triggerChange]="triggerChangeForm"
+      [actionEvent]="actionEvent"
+      [label]="TRANSLATION_PATH + 'DEPARTMENT' | translate"
+      controlName="department"></ase-form>
+
+    <ase-form
+      class="col-4"
+      [formGroup]="usersForm"
+      [triggerChange]="triggerChangeForm"
+      [actionEvent]="actionEvent"
+      [label]="TRANSLATION_PATH + 'BRANCH' | translate"
+      controlName="branch"></ase-form>
+
+    <ase-form
+      class="col-4"
+      [formGroup]="usersForm"
+      [triggerChange]="triggerChangeForm"
+      [actionEvent]="actionEvent"
+      [label]="TRANSLATION_PATH + 'AREA' | translate"
+      controlName="area"></ase-form>
+
+    <ase-form
+      class="col-4"
+      [formGroup]="usersForm"
+      [triggerChange]="triggerChangeForm"
+      [actionEvent]="actionEvent"
+      [label]="TRANSLATION_PATH + 'DIVISION' | translate"
+      controlName="division"></ase-form>
+
+    <ase-form
+      class="col-12"
+      [formGroup]="usersForm"
+      [options]="mangerList"
+      [controlTypes]="TypeControlsEnum.DROP_DOWN"
+      [triggerChange]="triggerChangeForm"
+      [actionEvent]="actionEvent"
+      [label]="TRANSLATION_PATH + 'MANAGER_CODE' | translate"
+      controlName="managerCode"></ase-form>
+
+    <ase-form
+      class="col-12"
+      [formGroup]="usersForm"
+      [triggerChange]="triggerChangeForm"
+      [controlTypes]="TypeControlsEnum.DROP_DOWN"
+      [options]="STATUS_ITEMS"
+      [actionEvent]="actionEvent"
+      [label]="TRANSLATION_PATH + 'STATUS' | translate"
+      controlName="status"></ase-form>
+  </form>
+</ase-sidebar>
+<ase-confirm-dialog
+  [visible]="isDeleteDialog"
+  [itemName]="recordName"
+  (doCancel)="isDeleteDialog = false"
+  [dialogType]="actionEvent"
+  headerTitle="Xóa"
+  dialogWidth="600px"
+  (submitForm)="submitDelete()" />

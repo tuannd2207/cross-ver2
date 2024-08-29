@@ -1,0 +1,72 @@
+<div
+  class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+  <div class="grid w-full">
+    <div class="col max-h-screen p-0 w-6">
+      <img
+        style="object-fit: cover"
+        class="max-h-screen w-full"
+        alt="login-banner"
+        src="assets/images/login-banner.png" />
+    </div>
+    <div class="col flex flex-column justify-content-center">
+      <div class="ase-login">
+        <div class="card ase-p20">
+          <div class="ase-py20">
+            <ase-icon iconName="logo" />
+          </div>
+          <div>
+            <div
+              aseTypography
+              fontWeight="semibold"
+              [lineHeight]="36"
+              fontSize="title1">
+              Asean Securities xin chào!
+            </div>
+            <div aseTypography textColor="secondary" [lineHeight]="24">
+              Vui lòng đăng nhập để xem thêm thông tin
+            </div>
+          </div>
+          <div class="ase-mt24">
+            <label for="email1" class="block p-label mb-2">Tên đăng nhập</label>
+            <input
+              id="email1"
+              [(ngModel)]="username"
+              type="text"
+              placeholder="Email address"
+              pInputText
+              class="w-full ase-mb24" />
+
+            <label for="password1" class="block p-label mb-2">Mật khẩu</label>
+            <p-password
+              id="password1"
+              [(ngModel)]="password"
+              placeholder="Password"
+              [toggleMask]="true"
+              styleClass="w-full"
+              inputStyleClass="w-full p-3"></p-password>
+
+            <div
+              class="flex align-items-center justify-content-between ase-mt24 gap-5">
+              <div class="flex align-items-center">
+                <a
+                  aseTypography
+                  textColor="primary"
+                  fontWeight="semibold"
+                  class="font-medium no-underline ml-2 text-right cursor-pointer">
+                  Quên mật khẩu ?
+                </a>
+              </div>
+              <button
+                pButton
+                pRipple
+                (click)="login()"
+                class="justify-content-center">
+                Đăng nhập
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

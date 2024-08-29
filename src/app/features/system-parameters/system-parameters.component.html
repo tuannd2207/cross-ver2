@@ -1,0 +1,67 @@
+<div class="flex justify-content-between align-items-center ase-mb16">
+  <div aseTypography fontSize="title2" fontWeight="medium" class="p-2">
+    {{ TRANSLATION_PATH.SYSTEM_PARAMETERS + 'TITLE' | translate }}
+  </div>
+</div>
+<ase-data-table
+  #data
+  [data]="(mockData$ | async)!"
+  [rows]="10"
+  [totalRecords]="15"
+  [frozenColumn]="'Status'"
+  [globalFilterFields]="[]"
+  [cols]="cols"
+  [paginator]="false"
+  (sendActionEvents)="onSubmitAction($event)"></ase-data-table>
+
+<ase-sidebar
+  (doCancel)="onClosed()"
+  [visible]="!!clickedParameter"
+  [dialogType]="actionType"
+  [itemName]="clickedParameter?.name"
+  (submitForm)="validateForm()"
+  [dialogWidth]="'538px'"
+  [headerTitle]="TRANSLATION_PATH.SYSTEM_PARAMETERS + 'TITLE' | translate">
+  <form class="grid" [formGroup]="parameterForm">
+    <ase-form
+      class="col-12"
+      [formGroup]="parameterForm"
+      [triggerChange]="true"
+      [actionEvent]="actionType"
+      [label]="
+        TRANSLATION_PATH.SYSTEM_PARAMETERS + 'PARAMETER_NAME' | translate
+      "
+      controlName="name"></ase-form>
+    <ase-form
+      class="col-12"
+      [formGroup]="parameterForm"
+      [triggerChange]="true"
+      [maxLength]="20"
+      [actionEvent]="actionType"
+      [label]="TRANSLATION_PATH.COMMON + 'VALUE' | translate"
+      controlName="value"></ase-form>
+    <ase-form
+      class="col-12"
+      [formGroup]="parameterForm"
+      [triggerChange]="true"
+      [actionEvent]="actionType"
+      [label]="TRANSLATION_PATH.COMMON + 'DESCRIPTION' | translate"
+      controlName="description"></ase-form>
+    <ase-form
+      class="col-12"
+      [formGroup]="parameterForm"
+      [triggerChange]="true"
+      [actionEvent]="actionType"
+      [options]="STATUS_ITEMS"
+      [label]="TRANSLATION_PATH.COMMON + 'STATUS' | translate"
+      controlName="status"></ase-form>
+  </form>
+</ase-sidebar>
+
+<ase-confirm-dialog
+  [visible]="openConfirm"
+  [itemName]="clickedParameter?.name"
+  (doCancel)="openConfirm = false"
+  [dialogType]="actionType"
+  dialogWidth="600px"
+  (submitForm)="submitForm()" />

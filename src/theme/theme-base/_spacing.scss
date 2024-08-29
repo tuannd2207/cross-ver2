@@ -1,0 +1,41 @@
+$spacings: 0, 2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 56, 64;
+@each $spacing in $spacings {
+  .ase-mt#{$spacing} {
+    margin-top: #{$spacing}px !important;
+  }
+  .ase-mb#{$spacing} {
+    margin-bottom: #{$spacing}px !important;
+  }
+  .ase-ml#{$spacing} {
+    margin-left: #{$spacing}px !important;
+  }
+  .ase-mr#{$spacing} {
+    margin-right: #{$spacing}px !important;
+  }
+  .ase-m#{$spacing} {
+    margin: #{$spacing}px !important;
+  }
+  .ase-my#{$spacing} {
+    margin-top: #{$spacing}px !important;
+    margin-bottom: #{$spacing}px !important;
+  }
+  .ase-pt#{$spacing} {
+    padding-top: #{$spacing}px !important;
+  }
+  .ase-pb#{$spacing} {
+    padding-bottom: #{$spacing}px !important;
+  }
+  .ase-pl#{$spacing} {
+    padding-left: #{$spacing}px !important;
+  }
+  .ase-pr#{$spacing} {
+    padding-right: #{$spacing}px !important;
+  }
+  .ase-py#{$spacing} {
+    padding-top: #{$spacing}px !important;
+    padding-bottom: #{$spacing}px !important;
+  }
+  .ase-p#{$spacing} {
+    padding: #{$spacing}px !important;
+  }
+}
