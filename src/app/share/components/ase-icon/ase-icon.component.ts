@@ -1,8 +1,9 @@
-import { Component, inject, Input } from '@angular/core';
-import { AsyncPipe, NgIf } from '@angular/common';
-import { map, Observable } from 'rxjs';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { HttpClient } from '@angular/common/http';
+import {Component, inject, Input} from '@angular/core';
+import {AsyncPipe, NgIf} from '@angular/common';
+import {map, Observable} from 'rxjs';
+import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
+import {HttpClient, HttpContext} from '@angular/common/http';
+import {SkipLoading} from "@app/app.constant";
 
 @Component({
   selector: 'ase-icon',
@@ -37,8 +38,11 @@ export class AseIconComponent {
   set iconName(name: string) {
     name
       ? (this.svgIcon$ = this.httpClient
-          .get(`assets/icons/${name}.svg`, { responseType: 'text' })
-          .pipe(map((value) => this.sanitizer.bypassSecurityTrustHtml(value))))
+        .get(`assets/icons/${name}.svg`, {
+          responseType: 'text',
+          context: new HttpContext().set(SkipLoading, true),
+        })
+        .pipe(map((value) => this.sanitizer.bypassSecurityTrustHtml(value))))
       : void 0;
   }
 }

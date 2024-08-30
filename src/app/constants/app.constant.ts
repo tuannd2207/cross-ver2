@@ -2,6 +2,9 @@ import { environment } from '@environments/environment.development';
 import { RequestFeApiModel } from '@helper/request-fe-api.model';
 import { StatusEnum } from '@app/app.enum';
 import { TypeUserEnum } from '@share/share-enum';
+import {HttpContextToken} from "@angular/common/http";
+export const SkipLoading =
+  new HttpContextToken<boolean>(() => true);
 
 export const APP_INFO = {
   APP_ID: environment.appId,

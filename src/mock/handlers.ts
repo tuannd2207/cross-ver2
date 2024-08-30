@@ -1,10 +1,6 @@
 // src/mocks/handlers.ts
-import { http, HttpResponse } from 'msw';
-import {
-  managerList,
-  userResponse,
-  users,
-} from './data-mocks/user-management.mock';
+import {http, HttpResponse} from 'msw';
+import {managerList, userResponse, users,} from './data-mocks/user-management.mock';
 
 const url = 'http://localhost:8080/api/rest/process';
 type StatusType = 400 | 401 | 403 | 404 | 500 | 0 | 200;
@@ -25,9 +21,7 @@ const mockHttpStatusCase = (
       });
 };
 export const handlers = [
-  http.post(`${url}/getUsersByPage`, async ({ request }) => {
-    const requestBody: any = await request.json();
-    console.log(requestBody);
+  http.post(`${url}/getUsersByPage`,() => {
     return mockHttpStatusCase(200, userResponse);
   }),
 

@@ -21,7 +21,8 @@ export class UsersManagementService {
         data: user,
         authenType: 'getUsersByPage',
       },
-      this.loadUrl('getUsersByPage')
+      this.loadUrl('getUsersByPage'),
+      false
     );
   }
 
@@ -51,7 +52,8 @@ export class UsersManagementService {
         data: {},
         authenType: 'getAllUsersByStatusActive',
       },
-      this.loadUrl('getAllUsersByStatusActive')
+      this.loadUrl('getAllUsersByStatusActive'),
+      true
     );
   }
 

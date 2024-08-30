@@ -1,11 +1,11 @@
-import { inject, Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, Observable, tap } from 'rxjs';
-import { BodyModel, ResponseModel } from '@helper/response.model';
-import { RequestModel } from '@helper/request.model';
-import { BODY_REQUEST } from '@app/app.constant';
-import { environment } from '@environments/environment';
-import { RequestFeApiModel } from '@helper/request-fe-api.model';
+import {inject, Injectable} from '@angular/core';
+import {HttpClient, HttpContext, HttpHeaders} from '@angular/common/http';
+import {map, Observable, tap} from 'rxjs';
+import {BodyModel, ResponseModel} from '@helper/response.model';
+import {RequestModel} from '@helper/request.model';
+import {BODY_REQUEST, SkipLoading} from '@app/app.constant';
+import {environment} from '@environments/environment';
+import {RequestFeApiModel} from '@helper/request-fe-api.model';
 
 @Injectable({
   providedIn: 'root',
@@ -52,7 +52,8 @@ export class ApiService {
 
   post<T, D>(
     requestBody: RequestFeApiModel<D>,
-    url: string = environment.feApiUrl
+    url: string = environment.feApiUrl,
+    isSkipLoading = false,
   ): Observable<BodyModel<T>> {
     const requestAPI: RequestModel<typeof BODY_REQUEST.BODY_REQUEST_FE_API> = {
       header: environment.headerFeApi,
@@ -64,6 +65,7 @@ export class ApiService {
     return this.http
       .post<ResponseModel<T>>(url, requestAPI, {
         headers: this.headers,
+        context: new HttpContext().set(SkipLoading, isSkipLoading),
       })
       .pipe(
         tap({
