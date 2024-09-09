@@ -37,6 +37,7 @@ import TRANSLATION_PATH from '@app/translation-path.enum';
 import {AseConfirmDialogComponent} from '@share/ase-confirm-dialog/ase-confirm-dialog.component';
 import {AseBackgroundTagComponent} from '@share/ase-background-tag/ase-background-tag.component';
 import {SystemParametersActionsEnum} from "../system-parameters/models/system-parameters.model";
+import {NotificationServiceService} from "@helper/notification-service.service";
 
 @Component({
   selector: 'ase-users-management',
@@ -78,6 +79,7 @@ export class UsersManagementComponent {
   private readonly destroyRef = inject(DestroyRef);
   private userService = inject(UsersManagementService);
   private readonly changeDetectorRef = inject(ChangeDetectorRef);
+  private readonly notifi = inject(NotificationServiceService);
 
   actions: AseMenuItem[] = [
     {
@@ -115,7 +117,7 @@ export class UsersManagementComponent {
     pageSize: 10,
     pageIndex: 0,
   };
-  pageDefault: Pagination = Object.freeze({ ...this.pagination });
+  pageDefault: Pagination = Object.freeze({...this.pagination});
   user$: BehaviorSubject<UsersManagement[]> = new BehaviorSubject<
     UsersManagement[]
   >([]);
@@ -153,16 +155,16 @@ export class UsersManagementComponent {
   });
 
   cols: TableHeader[] = [
-    { field: 'managerCode', header: 'Mã quản lý', disabledSort: true },
-    { field: 'fullName', header: 'Tên người dùng' },
-    { field: 'userType', header: 'Loại người dùng', background: true },
-    { field: 'position', header: 'Chức vụ' },
-    { field: 'department', header: 'Phòng ban' },
-    { field: 'branch', header: 'Chi nhánh' },
-    { field: 'area', header: 'Khu vực' },
-    { field: 'division', header: 'Khối' },
-    { field: 'managerName', header: 'Quản lý trực tiếp' },
-    { field: 'status', header: 'Status', background: true },
+    {field: 'managerCode', header: 'Mã quản lý', disabledSort: true},
+    {field: 'fullName', header: 'Tên người dùng'},
+    {field: 'userType', header: 'Loại người dùng', background: true},
+    {field: 'position', header: 'Chức vụ'},
+    {field: 'department', header: 'Phòng ban'},
+    {field: 'branch', header: 'Chi nhánh'},
+    {field: 'area', header: 'Khu vực'},
+    {field: 'division', header: 'Khối'},
+    {field: 'managerName', header: 'Quản lý trực tiếp'},
+    {field: 'status', header: 'Status', background: true},
   ];
   isDeleteDialog = false;
   recordName?: string;
@@ -184,7 +186,7 @@ export class UsersManagementComponent {
   }
 
   saveUser() {
-    const { value, invalid } = this.usersForm;
+    const {value, invalid} = this.usersForm;
     MarkAllControlsDirtyTriggerChanges(this.usersForm);
     if (invalid) return;
     if (this.actionEvent === this.ActionEvents.EDIT) {
@@ -255,12 +257,12 @@ export class UsersManagementComponent {
     reader.readAsArrayBuffer(value);
     return (reader.onload = () => {
       const data = reader.result;
-      const workbook = XLSX.read(data, { type: 'array' });
+      const workbook = XLSX.read(data, {type: 'array'});
       const sheetName = workbook.SheetNames[0];
       const sheet1 = workbook.Sheets[sheetName];
       const listUserFromXlsx: UsersManagement[] = XLSX.utils.sheet_to_json(
         sheet1,
-        { raw: true }
+        {raw: true}
       ) as UsersManagement[];
       console.log(this.isInvalid(listUserFromXlsx));
       this.changeDetectorRef.markForCheck();
@@ -269,11 +271,12 @@ export class UsersManagementComponent {
 
   searchUsers(isClickSearch = false): void {
     console.log(isClickSearch);
-    this.pagination = { ...this.pageDefault };
-    this.loadData({ ...this.pageDefault, ...this.userSearchForm.value }, true);
+    this.pagination = {...this.pageDefault};
+    this.loadData({...this.pageDefault, ...this.userSearchForm.value}, true);
   }
 
   private loadData(user: UserRequest, isClickSearch = false): void {
+    this.notifi.createComponent('cgfg');
     this.pagination.pageNumber = isClickSearch
       ? this.pagination.pageNumber
       : this.pagination.pageIndex;
