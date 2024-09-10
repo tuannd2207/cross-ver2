@@ -21,7 +21,8 @@ $primaryTextColor: var(--primary-color-text);
 $buttonSolidTextDefault: var(--button-solid-text-default);
 $fontSizeRoot: 16px;
 $radioButtonColor: var(--primary-color);
-
+$toastBackground: var(--background-reserve);
+$toastTextColor: var(--text-reverse);
 $colors: (
   'blue': #60a5fa,
   'green': #4caf50,
@@ -317,7 +318,7 @@ $colors: (
   --text-secondary: #c0c0c2;
   --text-tertiary: #a7a7a8;
   --text-disable: #5b5b5c;
-  --text-reverse: #fcfcfc;
+  --text-reverse: #0f0f0f;
   --text-brand: #f74036;
   --text-on-brand: #ffffff;
   --text-link: #2563eb;

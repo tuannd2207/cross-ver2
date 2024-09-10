@@ -1,16 +1,26 @@
-import {Component, inject} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
-import {ToastModule} from 'primeng/toast';
-import {AsyncPipe, NgIf} from "@angular/common";
-import {AseLoadingService} from "@helper/ase-loading.service";
+import {
+  AfterContentChecked,
+  ChangeDetectorRef,
+  Component,
+  inject,
+} from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { AseLoadingService } from '@helper/ase-loading.service';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 @Component({
   selector: 'ase-root',
   standalone: true,
-  imports: [RouterOutlet, ToastModule, AsyncPipe, NgIf],
+  imports: [RouterOutlet, AsyncPipe, NgIf, NgxPermissionsModule],
+  providers: [],
   templateUrl: './app.component.html',
 })
-export class AppComponent {
+export class AppComponent implements AfterContentChecked {
+  private cdr = inject(ChangeDetectorRef);
   loadingService = inject(AseLoadingService);
-  loading$ = this.loadingService.loading$;
+
+  ngAfterContentChecked(): void {
+    this.cdr.detectChanges();
+  }
 }

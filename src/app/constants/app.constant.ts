@@ -2,9 +2,9 @@ import { environment } from '@environments/environment.development';
 import { RequestFeApiModel } from '@helper/request-fe-api.model';
 import { StatusEnum } from '@app/app.enum';
 import { TypeUserEnum } from '@share/share-enum';
-import {HttpContextToken} from "@angular/common/http";
-export const SkipLoading =
-  new HttpContextToken<boolean>(() => true);
+import { HttpContextToken } from '@angular/common/http';
+import { SelectOption } from '@share/select-option.model';
+import TRANSLATION_PATH from '@app/translation-paths.enum';
 
 export const APP_INFO = {
   APP_ID: environment.appId,
@@ -34,4 +34,26 @@ export const STATUS_ITEMS: StatusEnum[] = [
   StatusEnum.INACTIVE,
 ];
 
-export const TYPES_USER = [TypeUserEnum.INTERNAL, TypeUserEnum.EXTERNAL];
+export const STATUS_OPTIONS: SelectOption[] = [
+  {
+    label: `${TRANSLATION_PATH.COMMON}${StatusEnum.ACTIVE}`,
+    value: StatusEnum.ACTIVE,
+  },
+  {
+    label: `${TRANSLATION_PATH.COMMON}${StatusEnum.INACTIVE}`,
+    value: StatusEnum.INACTIVE,
+  },
+];
+
+export const TYPES_USER: SelectOption[] = [
+  {
+    label: `${TRANSLATION_PATH.COMMON}${TypeUserEnum.INTERNAL}`,
+    value: TypeUserEnum.INTERNAL,
+  },
+  {
+    label: `${TRANSLATION_PATH.COMMON}${TypeUserEnum.EXTERNAL}`,
+    value: TypeUserEnum.EXTERNAL,
+  },
+];
+
+export const SKIP_LOADING = new HttpContextToken<boolean>(() => true);

@@ -13,44 +13,66 @@
     "EXTERNAL": "Đối tác",
     "DELETE": "Xóa",
     "CONFIRM": "Xác nhận",
-    "CANCEL": "Hủy"
+    "CANCEL": "Hủy",
+    "SYSTEM_MANAGEMENT": "Quản trị hệ thống",
+    "OPERATIONS": "Nghiệp vụ",
+    "ADD_NEW": "Thêm mới"
   },
   "SHARE": {
     "COMPONENTS": {
       "ASE_SIDEBAR": {
         "CLOSE": "Đóng",
         "ADD": "Thêm",
-        "CONFIRM": "Xác nhận",
+        "CONFIRM": "Xác nhận"
+      },
+      "ASE_DIALOG": {
         "EDIT": "Bạn có chắc muốn cập nhật bản ghi",
         "DELETE": "Bạn có chắc muốn xóa bản ghi",
         "APPROVE": "Bạn có chắc muốn duyệt bản ghi",
         "REJECT": "Bạn có chắc muốn từ chối bản ghi",
-        "YES": "Đồng ý"
+        "YES": "Đồng ý",
+        "CLOSE": "Đóng"
       }
     }
   },
   "FEATURES": {
     "USERS_MANAGEMENT": {
-        "TITLE": "Quản lý người dùng",
-        "USER_CODE": "Mã quản lý",
-        "USER_LOGIN": "Tên đăng nhập",
-        "FULL_NAME": "Họ và tên",
-        "USERTYPE": "Loại người dùng",
-        "POSITION": "Chức vụ",
-        "DEPARTMENT": "Phòng ban",
-        "BRANCH": "Chi nhánh",
-        "AREA": "Khu vực",
-        "DIVISION": "Khối",
-        "MANAGER_CODE": "Quản lý trực tiếp",
-        "MANAGER_NAME": "Tên người quản lý",
-        "STATUS": "Trạng thái",
-        "ADD_NEW": "Thêm mới",
-        "IMPORT_NEW": "Nhập dữ liệu",
-        "SUBMIT": "Thêm"
+      "TITLE": "Quản lý người dùng",
+      "USER_CODE": "Mã quản lý",
+      "USER_LOGIN": "Tên đăng nhập",
+      "FULL_NAME": "Họ và tên",
+      "USERTYPE": "Loại người dùng",
+      "POSITION": "Chức vụ",
+      "DEPARTMENT": "Phòng ban",
+      "BRANCH": "Chi nhánh",
+      "AREA": "Khu vực",
+      "DIVISION": "Khối",
+      "MANAGER_CODE": "Quản lý trực tiếp",
+      "MANAGER_NAME": "Tên người quản lý",
+      "STATUS": "Trạng thái",
+      "ADD_NEW": "Thêm mới",
+      "IMPORT_NEW": "Nhập dữ liệu",
+      "SUBMIT": "Thêm"
     },
     "SYSTEM_PARAMETERS": {
       "TITLE": "Tham số hệ thống",
       "PARAMETER_NAME": "Tên tham số"
+    },
+    "PERMISSIONS_MANAGEMENT": {
+      "TITLE": "Phân quyền chức năng",
+      "GROUP_NAME": "Tên nhóm",
+      "GROUP_CODE": "Mã nhóm người dùng"
+    },
+    "GENERAL_INFORMATION": {
+      "TITLE": "Thông tin chung",
+      "TAB_1": "Thông tin đối tác",
+      "TAB_2": "Thông tin môi giới"
+    },
+    "POLICIES": {
+      "TITLE": "Chính sách"
+    },
+    "TRANSACTIONS": {
+      "TITLE": "Giao dịch nghiệp vụ"
     }
   }
 }

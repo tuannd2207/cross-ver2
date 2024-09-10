@@ -1,7 +1,7 @@
 import { StatusEnum } from '@app/app.enum';
 import { FormGroup } from '@angular/forms';
 import { TypeUserEnum } from '@share/share-enum';
-import { StatusType } from '../../features/users-management/models/users-management.model';
+import { StatusType } from '@share/share-types.model';
 
 export const DataToTypeMapping: Record<StatusType | TypeUserEnum, string> = {
   [StatusEnum.PENDING]: 'warning',

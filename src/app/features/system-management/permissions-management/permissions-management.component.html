@@ -1,0 +1,72 @@
+<div class="flex flex-column h-full">
+  <div class="flex justify-content-between align-items-center ase-mb16">
+    <div aseTypography fontSize="title2" fontWeight="medium" class="p-2">
+      {{ TRANSLATION_PATH.SYSTEM_PARAMETERS + 'TITLE' | translate }}
+    </div>
+    <button (click)="addNewPermissionGroup()" pButton>
+      {{ TRANSLATION_PATH.COMMON + 'ADD_NEW' | translate }}
+      <ase-icon class="ase-ml4" iconName="insert" />
+    </button>
+  </div>
+
+  <div class="flex-1 h-full">
+    <ase-data-table
+      [data]="(mockData$ | async)!"
+      [rows]="10"
+      [totalRecords]="(mockData$ | async)!.length"
+      [globalFilterFields]="[]"
+      [cols]="cols"
+      [actionEvents]="actions"
+      [paginator]="true"
+      (sendActionEvents)="onSubmitAction($event)"></ase-data-table>
+  </div>
+</div>
+
+<ase-sidebar
+  (doCancel)="onClosed()"
+  [visible]="!!clickedItem"
+  [dialogType]="actionType"
+  [itemName]="clickedItem?.groupName!"
+  (submitForm)="submitForm()"
+  [formGroup]="form"
+  [dialogWidth]="'538px'"
+  [headerTitle]="TRANSLATION_PATH.SYSTEM_PARAMETERS + 'TITLE' | translate">
+  <ng-container *ngIf="!!clickedItem">
+    <form class="grid" [formGroup]="form">
+      <ase-form
+        class="col-12"
+        [formGroup]="form"
+        [actionEvent]="actionType"
+        [label]="
+          TRANSLATION_PATH.SYSTEM_PARAMETERS + 'PARAMETER_NAME' | translate
+        "
+        controlName="groupName"></ase-form>
+      <ase-form
+        class="col-12"
+        [formGroup]="form"
+        [maxLength]="20"
+        [actionEvent]="actionType"
+        [label]="TRANSLATION_PATH.COMMON + 'VALUE' | translate"
+        controlName="groupCode"></ase-form>
+      <ase-form
+        class="col-12"
+        [formGroup]="form"
+        [actionEvent]="actionType"
+        [label]="TRANSLATION_PATH.COMMON + 'DESCRIPTION' | translate"
+        controlName="description"></ase-form>
+
+      <ng-container
+        *ngIf="clickedItem?.status !== 'PENDING' || actionType !== 'EDIT'">
+        <ase-form
+          class="col-12"
+          [formGroup]="form"
+          [triggerChange]="true"
+          [actionEvent]="actionType"
+          [controlTypes]="TypeControlsEnum.DROP_DOWN"
+          [options]="STATUS_OPTIONS"
+          [label]="TRANSLATION_PATH.COMMON + 'STATUS' | translate"
+          controlName="status"></ase-form>
+      </ng-container>
+    </form>
+  </ng-container>
+</ase-sidebar>

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { StatusType } from '../../features/users-management/models/users-management.model';
 import { TypeUserEnum } from '@share/share-enum';
+import { StatusType } from '@share/share-types.model';
 
 @Pipe({
   name: 'aseForceSttType',

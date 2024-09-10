@@ -1,1 +1,12 @@
-<p>ase-notification works!</p>
+<p-toast [position]="position" [life]="duration">
+  <ng-template let-message pTemplate="message">
+    <div class="flex w-full align-items-center">
+      <div class="icon">
+        <ase-icon [iconName]="type" />
+      </div>
+      <div aseTypography fontSize="body2" fontWeight="regular" class="ase-ml8">
+        {{ message.detail }}
+      </div>
+    </div>
+  </ng-template>
+</p-toast>

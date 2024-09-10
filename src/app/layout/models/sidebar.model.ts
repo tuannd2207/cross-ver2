@@ -1,9 +1,6 @@
-type Roles = 'INTERNAL' | 'PARTNER';
-type Permission = string[];
-
 export interface IMenuItem {
   label?: string;
-  permissions?: { [p in Roles]: Permission };
+  permissions?: string[];
   icon?: string;
   items?: IMenuItem[];
   routerLink?: string[];

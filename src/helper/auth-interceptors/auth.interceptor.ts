@@ -1,25 +1,41 @@
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,} from '@angular/common/http';
-import {inject, Injectable} from '@angular/core';
-import {catchError, finalize, Observable, retry, throwError, timer} from 'rxjs';
-import {LocalStorageJwtService} from '@helper/local-storage-jwt.service';
-import {Router} from '@angular/router';
-import {APP_INFO, SkipLoading} from '@app/app.constant';
-import {AseLoadingService} from "@helper/ase-loading.service";
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+} from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import {
+  catchError,
+  finalize,
+  map,
+  Observable,
+  retry,
+  throwError,
+  timer,
+} from 'rxjs';
+import { LocalStorageJwtService } from '@helper/local-storage-jwt.service';
+import { Router } from '@angular/router';
+import { APP_INFO, SKIP_LOADING } from '@app/app.constant';
+import { AseLoadingService } from '@helper/ase-loading.service';
+import { AseDialogService } from '@helper/ase-dialog.service';
 
-const DELAY_TIME = 2000;
+const DELAY_TIME = 5000;
 const MAX_RETRY = 3;
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   private localstorageService = inject(LocalStorageJwtService);
   private loadingService = inject(AseLoadingService);
+  private dialogService = inject(AseDialogService);
   private readonly router = inject(Router);
 
   intercept(
     req: HttpRequest<unknown>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    if (!req.context.get(SkipLoading)) {
+    if (!req.context.get(SKIP_LOADING)) {
       this.loadingService.loadingOn();
     }
     let authToken: string | null = '';
@@ -30,9 +46,9 @@ export class AuthInterceptor implements HttpInterceptor {
     if (authToken && !isLoginRoute) {
       req = this.addToken(req, authToken);
     }
-    console.log(req.context.get(SkipLoading), ' load');
     return next.handle(req).pipe(
-      retry({count: MAX_RETRY, delay: this.retryWhen}),
+      map((res) => res),
+      retry({ count: MAX_RETRY, delay: this.retryWhen }),
       catchError((error) => {
         if (error instanceof HttpErrorResponse) {
           switch (error.status) {
@@ -43,13 +59,14 @@ export class AuthInterceptor implements HttpInterceptor {
               this.router.navigateByUrl('/not-found');
               break;
             case 400:
-              this.router.navigateByUrl('/error');
-              break;
-            case 500:
+              this.dialogService.openDialog();
               this.router.navigateByUrl('/error');
               break;
             case 403:
               this.router.navigateByUrl('/forbidden');
+              break;
+            case 500:
+              this.router.navigateByUrl('/error');
               break;
             default:
               throwError(() => error);
@@ -60,7 +77,7 @@ export class AuthInterceptor implements HttpInterceptor {
       }),
       finalize(() => {
         this.loadingService.loadingOff();
-      })
+      }),
     );
   }
 

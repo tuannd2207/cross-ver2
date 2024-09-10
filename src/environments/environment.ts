@@ -10,7 +10,7 @@ export const environment = {
   appId: 'EBANK_REGISTER',
   // ldapLoginUrl: 'https://gwint-apidev.seabank.com.vn:9443/seabank/seabank-internal/api/v1/ebankregister/jwtad/login',
   ldapLoginUrl: 'http://localhost:8080/api/ldap/authenticate',
-  feApiUrl: 'http://localhost:8080/api/rest/process',
+  feApiUrl: 'http://10.2.254.70:8080/api/rest/process',
   xIbmClientId: 'a96f621e935af9c9b3906c4e74c53b6b',
   xIbmClientSecret: '6a84df20bdbc3b4f89b1014bd089fc4c',
   headerLdapLogin: {

@@ -1,0 +1,13 @@
+<div class="flex flex-column h-full">
+  <div class="flex justify-content-between align-items-center ase-mb16 ase-p8">
+    <div aseTypography fontWeight="semibold" fontSize="title1">
+      {{ TRANSLATION_PATH + 'TITLE' | translate }}
+    </div>
+    <div>
+      <button (click)="addNewPolicy()" pButton>
+        {{ TRANSLATION_COMMON_PATH + 'ADD_NEW' | translate }}
+        <ase-icon class="ase-ml4" iconName="insert" />
+      </button>
+    </div>
+  </div>
+</div>

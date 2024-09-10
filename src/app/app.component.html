@@ -1,6 +1,4 @@
 <router-outlet></router-outlet>
-<div *ngIf="loading$ | async" class="ase-loading">
-  <div class="loader">
-  </div>
+<div *ngIf="loadingService.loading$ | async" class="ase-loading">
+  <div class="loader"></div>
 </div>
-

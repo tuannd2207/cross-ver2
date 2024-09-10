@@ -1,7 +1,7 @@
 {
   "COMMON": {
-    "EDIT": "Sửa",
-    "APPROVE": "Duyệt",
+    "EDIT": "Edit",
+    "APPROVE": "Approve",
     "ACTIVE": "Active",
     "INACTIVE": "Inactive",
     "PENDING": "Pending",
@@ -9,41 +9,63 @@
     "DESCRIPTION": "Description",
     "VALUE": "Value",
     "VIEW": "View",
-    "DELETE": "Delete",
     "INTERNAL": "Internal",
-    "EXTERNAL": "External"
+    "EXTERNAL": "External",
+    "DELETE": "Delete",
+    "CONFIRM": "Confirm",
+    "CANCEL": "Cancel",
+    "SYSTEM_MANAGEMENT": "System Management",
+    "ADD_NEW": "Add New"
   },
   "SHARE": {
     "COMPONENTS": {
-      "ASE_DIALOG": {
+      "ASE_SIDEBAR": {
         "CLOSE": "Close",
+        "ADD": "Add",
+        "CONFIRM": "Confirm"
+      },
+      "ASE_DIALOG": {
+        "EDIT": "Are you sure you want to update the record",
+        "DELETE": "Are you sure you want to delete the record",
+        "APPROVE": "Are you sure you want to approve the record",
+        "REJECT": "Are you sure you want to reject the record",
         "YES": "Yes",
-        "ADD": "Insert"
+        "CLOSE": "Close"
       }
     }
   },
   "FEATURES": {
     "USERS_MANAGEMENT": {
-      "TITLE": "Users management",
-      "USER_CODE": "Mã quản lý",
-      "USER_LOGIN": "Tên đăng nhập",
-      "FULL_NAME": "Họ và tên",
-      "USERTYPE": "Loại người dùng",
-      "POSITION": "Chức vụ",
-      "DEPARTMENT": "Phòng ban",
-      "BRANCH": "Chi nhánh",
-      "AREA": "Khu vực",
-      "DIVISION": "Khối",
-      "MANAGER_CODE": "Mã quản lý",
-      "MANAGER_NAME": "Tên người quản lý",
-      "STATUS": "Trạng thái",
-      "ADD_NEW": "Insert new user",
-      "IMPORT_NEW": "Import data",
-      "SUBMIT": "Insert"
+      "TITLE": "User Management",
+      "USER_CODE": "User Code",
+      "USER_LOGIN": "Username",
+      "FULL_NAME": "Full Name",
+      "USERTYPE": "User Type",
+      "POSITION": "Position",
+      "DEPARTMENT": "Department",
+      "BRANCH": "Branch",
+      "AREA": "Area",
+      "DIVISION": "Division",
+      "MANAGER_CODE": "Direct Manager",
+      "MANAGER_NAME": "Manager's Name",
+      "STATUS": "Status",
+      "ADD_NEW": "Add New",
+      "IMPORT_NEW": "Import Data",
+      "SUBMIT": "Submit"
     },
     "SYSTEM_PARAMETERS": {
-      "TITLE": "System parameters",
-      "PARAMETER_NAME": "Parameter name"
+      "TITLE": "System Parameters",
+      "PARAMETER_NAME": "Parameter Name"
+    },
+    "GENERAL_INFORMATION": {
+      "TITLE": "Thông tin chung",
+      "TAB_1": "Thông tin đối tác",
+      "TAB_2": "Thông tin môi giới"
+    },
+    "PERMISSIONS_MANAGEMENT": {
+      "TITLE": "Permissions Management",
+      "GROUP_NAME": "Group Name",
+      "GROUP_CODE": "User Group Code"
     }
   }
 }

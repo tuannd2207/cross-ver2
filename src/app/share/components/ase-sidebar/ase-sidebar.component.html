@@ -24,30 +24,27 @@
             {{ headerTitle }}
           </div>
         </div>
-
         <div class="header-actions">
-          <ng-container
-            *ngIf="
-              ActionEventsEnum[dialogType] === ActionEventsEnum.EDIT ||
-                ActionEventsEnum[dialogType] === ActionEventsEnum.NEW;
-              else view
-            ">
+          <ng-container *ngIf="actionsModify.includes(dialogType); else view">
             <p-button
               [label]="TRANSLATION_TEXT_VIEW + 'CLOSE' | translate"
               [outlined]="true"
-              (onClick)="doCancel.emit(false)" />
+              (onClick)="doCancel.emit()" />
 
             <p-button
-              *ngIf="ActionEventsEnum[dialogType] === 'EDIT'; else addButton"
+              *ngIf="
+                ActionEventsEnum[dialogType] === ActionEvents.EDIT;
+                else addButton
+              "
               class="ase-ml16"
               [label]="TRANSLATION_TEXT_VIEW + 'CONFIRM' | translate"
-              (onClick)="submitForm.emit()" />
+              (onClick)="submitForm.emit(dialogType)" />
 
             <ng-template #addButton>
               <p-button
                 class="ase-ml16"
                 [label]="TRANSLATION_TEXT_VIEW + 'ADD' | translate"
-                (onClick)="submitForm.emit()" />
+                (onClick)="submitForm.emit(dialogType)" />
             </ng-template>
           </ng-container>
           <ng-template #view>
@@ -55,18 +52,11 @@
               [label]="TRANSLATION_TEXT_VIEW + 'CLOSE' | translate"
               [outlined]="true"
               (onClick)="doCancel.emit(false)" />
-
             <p-button
-              *ngIf="
-                ActionEventsEnum[dialogType] === 'APPROVE' ||
-                ActionEventsEnum[dialogType] === 'REJECT'
-              "
+              *ngIf="!['VIEW', 'NEW'].includes(dialogType)"
               class="ase-ml16"
-              [label]="
-                TRANSLATION_PATH.COMMON + ActionEventsEnum[dialogType]
-                  | translate
-              "
-              (onClick)="submitForm.emit()" />
+              [label]="TRANSLATION_PATH.COMMON + dialogType | translate"
+              (onClick)="submitForm.emit(dialogType)" />
           </ng-template>
         </div>
       </div>
@@ -75,7 +65,7 @@
       style="border: 1px solid var(--modal-divider)"
       class="border-header ase-mb24"></div>
   </ng-container>
-  <ng-template #dialogContent pTemplate="content">
+  <ng-template pTemplate="content">
     <ng-content></ng-content>
   </ng-template>
 </p-sidebar>

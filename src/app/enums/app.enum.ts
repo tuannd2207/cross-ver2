@@ -13,3 +13,5 @@ export enum StatusEnum {
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
 }
+
+export type STATUS_TYPE = keyof typeof StatusEnum;

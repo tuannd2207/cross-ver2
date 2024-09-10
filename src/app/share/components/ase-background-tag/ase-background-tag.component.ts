@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TagModule } from 'primeng/tag';
 import { DataToTypeMapping } from '@share/share.constant';
 import { ForceStatusTypePipe } from '@share/force-status-type.pipe';
-import TRANSLATION_PATH from '@app/translation-path.enum';
+import TRANSLATION_PATH from '@app/translation-paths.enum';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({

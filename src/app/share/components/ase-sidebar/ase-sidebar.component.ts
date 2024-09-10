@@ -17,7 +17,8 @@ import { AseTypographyDirective } from '@share/ase-typography.directive';
 import { ActionEvent } from '@share/share-types.model';
 import { ActionEventsEnum } from '@share/share-enum';
 import { TranslateModule } from '@ngx-translate/core';
-import TRANSLATION_PATH from '@app/translation-path.enum';
+import TRANSLATION_PATH from '@app/translation-paths.enum';
+import { AseConfirmDialogComponent } from '@share/ase-confirm-dialog/ase-confirm-dialog.component';
 
 @Component({
   selector: 'ase-sidebar',
@@ -37,20 +38,26 @@ import TRANSLATION_PATH from '@app/translation-path.enum';
     AseIconComponent,
     AseTypographyDirective,
     TranslateModule,
+    AseConfirmDialogComponent,
   ],
   templateUrl: './ase-sidebar.component.html',
 })
 export class AseSidebarComponent {
   readonly TRANSLATION_TEXT_VIEW = 'SHARE.COMPONENTS.ASE_SIDEBAR.';
   @Input() dialogType: ActionEvent = 'EDIT';
-  @Input() itemName?: string;
+  @Input() itemName = '';
   @Input() dialogWidth = '464px';
   @Input() headerTitle = '';
   @Input() visible = false;
   @Input() dialogConfirm = false;
-  @Output() doCancel: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() submitForm: EventEmitter<void> = new EventEmitter<void>();
+  @Output() doCancel = new EventEmitter<boolean>();
+  @Output() submitForm = new EventEmitter<ActionEvent>();
+  readonly ActionEvents = ActionEventsEnum;
 
+  readonly actionsModify: string[] = [
+    this.ActionEvents.NEW,
+    this.ActionEvents.EDIT,
+  ];
   protected readonly ActionEventsEnum = ActionEventsEnum;
   protected readonly TRANSLATION_PATH = TRANSLATION_PATH;
 }

@@ -1,0 +1,26 @@
+@mixin border-radius($class, $size) {
+  .#{$class} {
+    border-radius: $size !important;
+  }
+}
+
+@mixin border-color($class, $color) {
+  .#{$class} {
+    border-color: $color !important;
+  }
+}
+
+@include border-color('border-primary', var(--primary-color));
+@include border-color('border-secondary', var(--text-color-secondary));
+@include border-color('border-tertiary', var(--text-tertiary));
+@include border-color('border-warning', var(--text-warning));
+@include border-color('border-info', var(--sky-500));
+@include border-color('border-danger', var(--danger-color));
+@include border-color('border-help', var(--help-color));
+@include border-color('border-success', var(--text-success));
+
+@include border-radius('radius-rounded4', $rounded4);
+@include border-radius('radius-rounded8', $rounded8);
+@include border-radius('radius-rounded12', $rounded12);
+@include border-radius('radius-rounded16', $rounded16);
+@include border-radius('radius-rounded999', $roundedPill);

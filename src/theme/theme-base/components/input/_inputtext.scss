@@ -11,6 +11,7 @@
   line-height: $lineHeightInputText;
   appearance: none;
   border-radius: $borderRadius;
+  height: fit-content;
 
   &::placeholder {
     color: $inputTextColor;

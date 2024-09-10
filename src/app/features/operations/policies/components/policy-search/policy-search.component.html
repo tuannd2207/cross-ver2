@@ -1,0 +1,121 @@
+<form [formGroup]="policySearchForm" class="grid">
+  <div class="col">
+    <p-dropdown
+      styleClass="w-full"
+      appendTo="body"
+      (onChange)="changeValue()"
+      [formControlName]="USER_CONTROL_NAME.directManager"
+      [id]="USER_CONTROL_NAME.directManager"
+      [inputId]="USER_CONTROL_NAME.directManager"
+      [options]="mangerList"
+      placeholder="Select" />
+  </div>
+  <div class="col">
+    <input
+      class="w-full"
+      (keyup.enter)="changeValue()"
+      [formControlName]="USER_CONTROL_NAME.fullName"
+      pInputText
+      [id]="USER_CONTROL_NAME.fullName" />
+  </div>
+  <div class="col">
+    <p-dropdown
+      styleClass="w-full"
+      appendTo="body"
+      (onChange)="changeValue()"
+      [formControlName]="USER_CONTROL_NAME.userType"
+      [id]="USER_CONTROL_NAME.userType"
+      [inputId]="USER_CONTROL_NAME.userType"
+      [options]="userType"
+      placeholder="Select">
+      <ng-template pTemplate="selectedItem">
+        <div aseTypography fontSize="body3" fontWeight="medium">
+          {{
+            userSearchForm.get(USER_CONTROL_NAME.userType)?.value
+              | aseDropdownTranslate: userType
+              | translate
+          }}
+        </div>
+      </ng-template>
+      <ng-template let-option pTemplate="item">
+        <div aseTypography fontSize="body3" fontWeight="medium">
+          {{ option.label | translate }}
+        </div>
+      </ng-template>
+    </p-dropdown>
+  </div>
+  <div class="col">
+    <input
+      class="w-full"
+      (keyup.enter)="changeValue()"
+      [formControlName]="USER_CONTROL_NAME.position"
+      pInputText
+      [id]="USER_CONTROL_NAME.position" />
+  </div>
+  <div class="col">
+    <input
+      class="w-full"
+      (keyup.enter)="changeValue()"
+      [formControlName]="USER_CONTROL_NAME.department"
+      pInputText
+      [id]="USER_CONTROL_NAME.department" />
+  </div>
+  <div class="col">
+    <input
+      class="w-full"
+      (keyup.enter)="changeValue()"
+      [formControlName]="USER_CONTROL_NAME.branch"
+      pInputText
+      [id]="USER_CONTROL_NAME.branch" />
+  </div>
+  <div class="col">
+    <input
+      class="w-full"
+      (keyup.enter)="changeValue()"
+      [formControlName]="USER_CONTROL_NAME.area"
+      pInputText
+      [id]="USER_CONTROL_NAME.area" />
+  </div>
+  <div class="col">
+    <input
+      class="w-full"
+      (keyup.enter)="changeValue()"
+      [formControlName]="USER_CONTROL_NAME.division"
+      pInputText
+      [id]="USER_CONTROL_NAME.division" />
+  </div>
+  <div class="col">
+    <input
+      class="w-full"
+      (keyup.enter)="changeValue()"
+      [formControlName]="USER_CONTROL_NAME.directManager"
+      pInputText
+      [id]="USER_CONTROL_NAME.division" />
+  </div>
+  <div class="col">
+    <p-dropdown
+      styleClass="w-full"
+      appendTo="body"
+      [formControlName]="USER_CONTROL_NAME.status"
+      [id]="USER_CONTROL_NAME.userType"
+      (onChange)="changeValue()"
+      [inputId]="USER_CONTROL_NAME.status"
+      [options]="statusOptions"
+      placeholder="Select">
+      <ng-template pTemplate="selectedItem">
+        <div aseTypography fontSize="body3" fontWeight="medium">
+          {{
+            userSearchForm.get(USER_CONTROL_NAME.status)?.value
+              | aseDropdownTranslate: statusOptions
+              | translate
+          }}
+        </div>
+      </ng-template>
+      <ng-template let-option pTemplate="item">
+        <div aseTypography fontSize="body3" fontWeight="medium">
+          {{ option.label | translate }}
+        </div>
+      </ng-template>
+    </p-dropdown>
+  </div>
+</form>

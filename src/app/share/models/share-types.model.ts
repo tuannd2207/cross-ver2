@@ -1,10 +1,7 @@
-import { ActionEventsEnum, TypeControlsEnum } from '@share/share-enum';
+import { StatusEnum } from '@app/app.enum';
+import { ActionEventsEnum } from '@share/share-enum';
 
 export type ActionEvent = keyof typeof ActionEventsEnum;
 
-export type ControlType =
-  | TypeControlsEnum.INPUT
-  | TypeControlsEnum.DROP_DOWN
-  | TypeControlsEnum.RADIO_BUTTON
-  | TypeControlsEnum.CHECK_BOX
-  | TypeControlsEnum.DATE_PICKER;
+export type NotificationType = 'info' | 'warning' | 'error' | 'success';
+export type StatusType = keyof typeof StatusEnum;

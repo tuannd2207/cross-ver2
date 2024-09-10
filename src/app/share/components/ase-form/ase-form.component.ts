@@ -5,7 +5,11 @@ import {
   Input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActionEventsEnum, TypeControlsEnum } from '@share/share-enum';
+import {
+  ActionEventsEnum,
+  ControlType,
+  TypeControlsEnum,
+} from '@share/share-enum';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputErrorsComponent } from '@share/input-errors/input-errors.component';
 import { InputTextModule } from 'primeng/inputtext';
@@ -13,10 +17,14 @@ import { PaginatorModule } from 'primeng/paginator';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { AseBackgroundTagComponent } from '@share/ase-background-tag/ase-background-tag.component';
-import { ActionEvent, ControlType } from '@share/share-types.model';
-import TRANSLATION_PATH from '@app/translation-path.enum';
+import { ActionEvent } from '@share/share-types.model';
+import TRANSLATION_PATH from '@app/translation-paths.enum';
 import { AseTypographyDirective } from '@share/ase-typography.directive';
 import { TranslateModule } from '@ngx-translate/core';
+import { SelectOption } from '@share/select-option.model';
+import { AseDropdownTranslatePipe } from '@share/ase-dropdown-translate.pipe';
+import { SelectLabelPipe } from '@share/select-label.pipe';
+import { AseTrimSpaceDirective } from '@share/ase-trim-space.directive';
 
 @Component({
   selector: 'ase-form',
@@ -32,18 +40,30 @@ import { TranslateModule } from '@ngx-translate/core';
     RadioButtonModule,
     AseTypographyDirective,
     TranslateModule,
+    AseDropdownTranslatePipe,
+    SelectLabelPipe,
+    AseTrimSpaceDirective,
   ],
   templateUrl: './ase-form.component.html',
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AseFormComponent<T> {
+export class AseFormComponent {
+  readonly TRANSLATION_PATH = TRANSLATION_PATH;
   readonly ActionEvents = ActionEventsEnum;
   readonly TypeControlsEnum = TypeControlsEnum;
-  @Input() options: T[] = [];
+  readonly controlsDisplayWithTag: string[] = ['status', 'userType'];
+  readonly actionsModify: string[] = [
+    this.ActionEvents.NEW,
+    this.ActionEvents.EDIT,
+  ];
+  @Input() dataView: unknown;
+  @Input() options: SelectOption[] = [];
   @Input() controlTypes: ControlType = TypeControlsEnum.INPUT;
   @Input() triggerChange?: boolean;
   @Input({ required: true }) label = '';
+  @Input() areaRows = 3;
+  @Input() areaColumns = 3;
   @Input({ required: true }) formGroup!: FormGroup;
   @Input() maxLength!: number;
   @Input({ required: true }) controlName = '';
@@ -51,11 +71,8 @@ export class AseFormComponent<T> {
 
   @HostBinding('class')
   protected get computedHostClass() {
-    return this.actionEvent === this.ActionEvents.VIEW
+    return !this.actionsModify.includes(this.actionEvent)
       ? `col-12 flex justify-content-between ase-mb8`
       : void 0;
   }
-
-  protected readonly TRANSLATION_PATH = TRANSLATION_PATH;
-  protected readonly String = String;
 }

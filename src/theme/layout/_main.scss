@@ -20,7 +20,9 @@ body {
 
 a {
   text-decoration: none;
-  color: var(--primary-color);
+  &:active {
+    color: var(--primary-color);
+  }
 }
 
 .layout-wrapper {

@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
 import { AppLayoutComponent } from '@app/layout.component';
-import { authGuard } from '@helper/auth.guard';
 import { NotfoundComponent } from './features/notfound/notfound.component';
 import { ErrorComponent } from './features/auth/error/error.component';
+import { ngxPermissionsGuard } from 'ngx-permissions';
+import { MenuPermissionsEnum } from '@helper/iLdap-login-res';
 
 export const routes: Routes = [
   {
@@ -11,8 +12,19 @@ export const routes: Routes = [
     children: [
       {
         path: 'system-management',
-        canActivate: [authGuard],
-        loadChildren: () => import('./features/features.routes'),
+        loadChildren: () =>
+          import('./features/system-management/system-management.routes'),
+      },
+      {
+        path: 'operations',
+        canActivate: [ngxPermissionsGuard],
+        data: {
+          permissions: {
+            only: MenuPermissionsEnum.OPERATIONS,
+            redirectTo: '/forbidden',
+          },
+        },
+        loadChildren: () => import('./features/operations/operations.routes'),
       },
     ],
   },

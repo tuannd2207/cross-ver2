@@ -1,4 +1,4 @@
 export interface RequestFeApiModel<T> {
   authenType: string;
-  data: T;
+  data?: T;
 }

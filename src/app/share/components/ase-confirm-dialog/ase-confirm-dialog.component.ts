@@ -12,7 +12,7 @@ import { RippleModule } from 'primeng/ripple';
 import { SharedModule } from 'primeng/api';
 import { TranslateModule } from '@ngx-translate/core';
 import { ActionEvent } from '@share/share-types.model';
-import TRANSLATION_PATH from '@app/translation-path.enum';
+import TRANSLATION_PATH from '@app/translation-paths.enum';
 import { AseTypographyDirective } from '@share/ase-typography.directive';
 
 @Component({
@@ -32,7 +32,7 @@ import { AseTypographyDirective } from '@share/ase-typography.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AseConfirmDialogComponent {
-  readonly TRANSLATION_TEXT_VIEW = 'SHARE.COMPONENTS.ASE_SIDEBAR.';
+  readonly TRANSLATION_TEXT_VIEW = 'SHARE.COMPONENTS.ASE_DIALOG.';
   @Input() dialogType: ActionEvent = 'EDIT';
   @Input() itemName?: string;
   @Input() dialogWidth = '464px';

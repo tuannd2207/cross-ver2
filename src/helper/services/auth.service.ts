@@ -16,9 +16,13 @@ export class AuthService {
     username: string,
     password: string
   ): Observable<BodyModel<ILdapLoginRes>> {
-    return this.apiService.authFetch<ILdapLoginRes>(this.apiUrl, {
+    return this.apiService.authFetch(this.apiUrl, {
       username: username,
       password: password,
     });
+  }
+
+  authorize(): Observable<BodyModel<ILdapLoginRes>> {
+    return this.apiService.authFetch(this.apiUrl);
   }
 }

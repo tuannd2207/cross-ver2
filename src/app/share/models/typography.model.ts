@@ -29,4 +29,11 @@ export type BACKGROUND_COLORS =
   | 'danger'
   | 'help'
   | 'success';
+export type BORDER_RADIUS =
+  | 'rounded4'
+  | 'rounded8'
+  | 'rounded12'
+  | 'rounded16'
+  | 'rounded999';
+
 export type FONT_WEIGHT = 'regular' | 'medium' | 'semibold' | 'bold';
